@@ -1,0 +1,56 @@
+ {% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}     <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row g-5 align-items-center shadow-lg">
+                    <div class="col-lg-6 wow fadeIn shadow-lg" data-wow-delay="0.1s">
+                        <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                            <img class="img-fluid w-100" src="{{m.pict.url}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeIn shadow-lg" data-wow-delay="0.5s">
+                                                                        <b>Movie Name:</b>
+
+                        <h1 class="mb-4 text-success">{{m.name}}</h1>
+<!--                        review button start-->
+
+<a class="btn btn-success" href="{%url 'ratenreview' m.id %}">Review this Movie&nbsp;&nbsp;<i class="fa-regular fa-pen-to-square"></i></a><br>
+
+<!--                        review button end-->
+                        <b>Genre:</b>
+                        <h5 class="mb-4 text-success">{{m.category.name}}</h5>
+                                                <b>Description:</b>
+
+                        <h4 class="mb-4">{{m.desc}}</h4>
+                                                <b>Actors:</b>
+
+                        <h4 class="mb-4">{{m.actors}}</h4>
+                                                <b>Released on::</b>
+                        <h4 class="mb-4">{{m.released}}</h4>
+
+<!--                        trailer start-->
+                                                                        <b>Watch Trailer::</b>
+
+                        <iframe width="560" height="315" src="{{m.utubelink}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!--                        trailer ends-->
+                    </div>
+
+                 </div><br><br><br>
+                <div class="container ">
+                <div class="row g-5 align-items-center ">
+                    <div class="col-lg-12 wow fadeIn shadow-lg" data-wow-delay="0.5s">
+                        <h5 class="mb-4 text-success shadow-lg">Reviews</h5>
+
+
+{%for i in 'sdsfsdfdfdfsdf'%}{%for rr in r%}
+<div class="d-flex shadow-lg">
+<div class="p-2 flex-shrink-1">{{rr.rating}}/10</div>
+<div class="p-2 w-100">{{rr.review}} - by <i>{{rr.user.username}}</i></div>
+</div><br>
+{%endfor%}{%endfor%}
+                    </div></div></div></div></div>
+
+        <!-- About End -->{%endblock%}

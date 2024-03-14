@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container"><div class="row"><div class="col-lg-5 col-12 mx-auto">
+    <form action="{% url 'ratenreview' m.id %}" method="post" class="form-control shadow-lg" enctype="multipart/form-data">{% csrf_token %}
+    <h4 class="text-danger mb-4" >{{msg}}</h4>
+    <h5 class="text-success mb-4">Rate this movie</h5>
+        <h7 class="mb-4"><b>Movie Name</b></h7>
+    <h5 class="text-success mb-4">{{m.name}}</h5>
+
+    <div class="form-group">
+        <h7 class="mb-4"><b>Your Review</b></h7>
+        <textarea class="form-control" name="review" rows="3" placeholder="Write here" style="border-style: inset;border-width: 2px;"></textarea>
+    </div>
+<div class="form-group">
+            <h7 class="mb-4"><b>Want to give a Rating for this Movie</b></h7><br>
+        <input type="radio" id="yes" name="ratinggiven" value="1" checked>
+            <label>Yes</label>
+        <input type="radio" id="no" name="ratinggiven" value="0">
+            <label>No</label><br>
+<label id="slidetorate"><b>Slide to Rate</b></label>
+<input type="range" min="1" max="10" step="1" value="6" name="rating" id="slider">
+  <label id="label"><b><span id="rating"> </span>/10</b></label>
+ </div>
+<script>
+var slider = document.getElementById("slider");
+var rating = document.getElementById("rating");
+var yesradio = document.getElementById("yes");
+var noradio = document.getElementById("no");
+var label = document.getElementById("label");
+var slidetorate = document.getElementById("slidetorate");
+
+rating.innerHTML = slider.value;
+
+slider.oninput = function() {
+  rating.innerHTML = this.value;
+}
+yesradio.oninput = function() {
+  slider.style.display = "block";
+  slidetorate.style.display = "block";
+  label.style.display = "block";
+}
+noradio.oninput = function() {
+  slider.style.display = "none";
+  slidetorate.style.display = "none";
+  label.style.display = "none";
+}
+</script>
+
+    <button type="submit" class="form-control btn btn-success">Submit Review</button>
+</form></div></div></div>
+{% endblock %}
